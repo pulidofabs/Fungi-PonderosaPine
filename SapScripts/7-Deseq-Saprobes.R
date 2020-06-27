@@ -36,24 +36,21 @@ physeqSap<-phyloseq(
 #********************************************************************************************************************----
 #------------------------------------     QUALITY CONTROL        ---------------------------------------------
 #********************************************************************************************************************----
-rank_names(physeqSap)# Look at rank names
-
-#Quality control: Remove the g__ from each rank number
+#Quality control: Remove the g__ from each rank number-Burned
+rank_names(physeqSap)
 colnames(tax_table(physeqSap))= c("Kingdom","Phylum","Class","Order","Family","Genus","Species", "Confidence")
-tax_table(physeqSap)[, "Kingdom"] <- gsub("D_0__", "", tax_table(physeqSap)[, "Kingdom"])
-tax_table(physeqSap)[, "Phylum"] <- gsub("D_1__", "", tax_table(physeqSap)[, "Phylum"])
-tax_table(physeqSap)[, "Class"] <- gsub("D_2__", "", tax_table(physeqSap)[, "Class"])
-tax_table(physeqSap)[, "Order"] <- gsub("D_3__", "", tax_table(physeqSap)[, "Order"])
-tax_table(physeqSap)[, "Family"] <- gsub("D_4__", "", tax_table(physeqSap)[, "Family"])
-tax_table(physeqSap)[, "Genus"] <- gsub("D_5__", "", tax_table(physeqSap)[, "Genus"])
-tax_table(physeqSap)[, "Species"] <- gsub("D_6__", "", tax_table(physeqSap)[, "Species"])
+tax_table(physeqSap)[, "Phylum"] <- gsub("p__", "", tax_table(physeqSap)[, "Phylum"])
+tax_table(physeqSap)[, "Class"] <- gsub("c__", "", tax_table(physeqSap)[, "Class"])
+tax_table(physeqSap)[, "Order"] <- gsub("o__", "", tax_table(physeqSap)[, "Order"])
+tax_table(physeqSap)[, "Family"] <- gsub("f__", "", tax_table(physeqSap)[, "Family"])
+tax_table(physeqSap)[, "Genus"] <- gsub("g__", "", tax_table(physeqSap)[, "Genus"])
+tax_table(physeqSap)[, "Species"] <- gsub("s__", "", tax_table(physeqSap)[, "Species"])
 
 
 sample_data(physeqSap)$TimeSinceFire<-factor(sample_data(physeqSap)$TimeSinceFire)
 
 #Remane taxa so it fits graph..........................................................................................
 physeqSap$Genus[physeqSap$Genus == "Burkholderia-Caballeronia-Paraburkholderia"] <- "Burkholderia-CP" 
-
 taxa_names(physeqSap)
 
 #
